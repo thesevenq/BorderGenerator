@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BorderGenerator:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="BorderGenerator.jar">
+      <element id="module-output" name="BorderGenerator" />
+    </root>
+  </artifact>
+</component>

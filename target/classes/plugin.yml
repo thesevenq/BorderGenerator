@@ -1,0 +1,8 @@
+name: BorderGenerator
+version: 1.0
+author: thesevenq
+main: me.thesevenq.bordergen.BorderGenerator
+
+commands:
+  border:
+    description: Border Command
