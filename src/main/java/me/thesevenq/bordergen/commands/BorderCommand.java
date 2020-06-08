@@ -2,8 +2,6 @@ package me.thesevenq.bordergen.commands;
 
 import me.thesevenq.bordergen.BorderGenerator;
 import me.thesevenq.bordergen.border.Border;
-import me.thesevenq.bordergen.border.helper.BorderHelper;
-import me.thesevenq.bordergen.border.utils.BorderUtils;
 import me.thesevenq.bordergen.utils.Color;
 import net.minecraft.util.org.apache.commons.lang3.math.NumberUtils;
 import org.bukkit.Bukkit;
@@ -24,7 +22,7 @@ public class BorderCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player player = (Player) sender;
 
-        if(!(sender.hasPermission("border.use") || sender.isOp())) {
+        if(!(player.hasPermission("border.use"))) {
             player.sendMessage(Color.translate("&cNo permission!"));
             return false;
         }
@@ -34,7 +32,7 @@ public class BorderCommand implements CommandExecutor {
             return false;
         }
 
-        int amount = Integer.valueOf(args[1]);
+        int amount = Integer.parseInt(args[1]);
 
         if (amount > 5000) {
             sender.sendMessage(Color.translate("&7[&4Border&7] &cBorder limit is &45000&c."));

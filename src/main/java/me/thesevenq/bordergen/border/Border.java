@@ -1,6 +1,7 @@
 package me.thesevenq.bordergen.border;
 
-import me.thesevenq.bordergen.border.helper.BorderHelper;
+import me.thesevenq.bordergen.BorderGenerator;
+import me.thesevenq.bordergen.border.managers.BorderManager;
 import me.thesevenq.bordergen.border.utils.BorderUtils;
 import me.thesevenq.bordergen.utils.Color;
 import org.bukkit.Bukkit;
@@ -10,7 +11,7 @@ public class Border {
 
     public Border(World world, int border) {
 
-        BorderHelper.addBedrockBorder(world.getName(), border, 5);
+        BorderGenerator.getInstance().getBorderManager().addBedrockBorder(world.getName(), border, 5);
 
         int[] count = {0};
 

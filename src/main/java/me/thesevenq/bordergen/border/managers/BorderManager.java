@@ -1,4 +1,4 @@
-package me.thesevenq.bordergen.border.helper;
+package me.thesevenq.bordergen.border.managers;
 
 import lombok.Getter;
 import me.thesevenq.bordergen.BorderGenerator;
@@ -11,22 +11,22 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.Arrays;
 import java.util.List;
 
-public class BorderHelper {
+public class BorderManager {
 
     @Getter
-    private static List<Material> blockedWallBlocks = Arrays.asList(Material.LOG, Material.LOG_2, Material.LEAVES, Material.LEAVES_2,
+    private List<Material> blockedWallBlocks = Arrays.asList(Material.LOG, Material.LOG_2, Material.LEAVES, Material.LEAVES_2,
             Material.AIR, Material.WATER, Material.STATIONARY_WATER, Material.LAVA, Material.STATIONARY_LAVA,
             Material.HUGE_MUSHROOM_1, Material.HUGE_MUSHROOM_2, Material.DOUBLE_PLANT, Material.LONG_GRASS,
             Material.VINE, Material.YELLOW_FLOWER, Material.RED_ROSE, Material.CACTUS, Material.DEAD_BUSH,
             Material.SUGAR_CANE_BLOCK, Material.ICE, Material.SNOW);
 
-    public static void addBedrockBorder(String world, int radius, int blocksHigh) {
+    public void addBedrockBorder(String world, int radius, int blocksHigh) {
         for (int i = 0; i < blocksHigh; i++) {
             Bukkit.getScheduler().runTaskLater(BorderGenerator.getInstance(), () -> addBedrockBorder(world, radius), i);
         }
     }
 
-    public static void figureOutBlockToMakeBedrock(String world, int x, int z) {
+    public void figureOutBlockToMakeBedrock(String world, int x, int z) {
         Block block = Bukkit.getWorld(world).getHighestBlockAt(x, z);
         Block below = block.getRelative(BlockFace.DOWN);
         while (blockedWallBlocks.contains(below.getType()) && below.getY() > 1) {
@@ -36,7 +36,7 @@ public class BorderHelper {
         below.getRelative(BlockFace.UP).setType(Material.BEDROCK);
     }
 
-    public static void addBedrockBorder(String world, int radius) {
+    public void addBedrockBorder(String world, int radius) {
         new BukkitRunnable() {
             private int counter = -radius - 1;
             private boolean phase1;
